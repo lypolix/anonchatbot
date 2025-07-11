@@ -19,9 +19,9 @@ class friendname (StatesGroup):
 @router.message(CommandStart())
 async def cmd_start(message: Message):
     username = message.from_user.username
-    await message.answer(f"Твой ник: @{username}")
     await message.answer('Привет!', reply_markup = kb.main)
-    await message.reply('Этот бот принимает анонимные сообщения и пересылает их вам, сохраняя конфиденциальность отправителя. Вы можете отвечать на сообщения — бот доставит ваш ответ, не раскрывая ваших данных. Просто напишите боту, и он станет вашим секретным посредником!')
+    await message.answer(f"Ваш ник: @{username}")
+    await message.reply('Этот бот помогает обмениваться анонимными сообщениями. Он может оправлять анонимные сообщения другим людям, которые им пользуются. Также здесь можно смотреть анонимные сообщения, которые были отправлены вам. Для начала выберите функцию.')
     await rq.set_user(message.from_user.id, username)
 
 @router.message(Command('help'))
@@ -33,7 +33,7 @@ async def cmd_help(message: Message):
 
 @router.message(F.text == 'Выбрать функцию')
 async def cmd_message(message: Message):
-    await message.answer('Выберите функцию', reply_markup = kb.send)
+    await message.answer('Выберите функцию:', reply_markup = kb.send)
 
 @router.callback_query(F.data == 'input')
 async def input(callback : CallbackQuery, state: FSMContext):
@@ -58,7 +58,7 @@ async def name_nick(message: Message, state =  FSMContext):
     )
     
 
-    await message.answer(f"Юзернейм {username} сохранён!")  
+    await message.answer(f"Пользователь {username} доступен для отправки анонимных сообщений!")  
 
     await state.set_state(friendname.sendtext)
     await message.answer('Напишите сообщение, которое вы хотите отправить.')
@@ -80,7 +80,7 @@ async def text_message(message: Message, state =  FSMContext):
     
 
 
-    await message.answer(f"Сообщение {saved_text} сохранено!")  
+    await message.answer(f"Сообщение {saved_text} отправлено!")  
 
     data = await state.get_data()
 
@@ -119,7 +119,7 @@ async def input(callback : CallbackQuery):
     message = await rq.get_first_message(user_id)
     
     if not message:
-        await callback.message.answer(f"У вас нет сообщений")
+        await callback.message.answer(f"У вас больше нет сообщений")
         return
 
     await callback.message.answer(f"{message.text}")
