@@ -45,26 +45,26 @@ app/
 ## Установка и запуск
 
 1. Клонируйте проект:
-   
+```   
 git clone https://github.com/<your-repo>/anon-messages-bot.git
 cd anon-messages-bot
-
+```
 
 2. Создайте виртуальное окружение и установите зависимости:
-   
+```  
 python -m venv venv
 source venv/bin/activate # Linux/macOS
 venv\Scripts\activate # Windows
 pip install -r requirements.txt
-
+```
 
 3. Установите токен бота от BotFather в переменной окружения или замените в `main.py`:
-   
+  
 export BOT_TOKEN="ваш_токен"
 
 
 4. Запустите бота:
-   
+  
 python -m app.main
 
 ---
@@ -81,10 +81,10 @@ python -m app.main
 ## Работа с базой данных
 
 - При первом запуске создаётся файл SQLite `db.sqlite3`
-- Таблицы:
+- Таблицы:```
   `users` — пользователи (Telegram ID, username)
   `messages` — сообщения (текст, id отправителя, id получателя)
-
+```
 - Сообщения удаляются после того, как получатель их прочитал.
 
 ---
