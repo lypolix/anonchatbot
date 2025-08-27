@@ -30,7 +30,7 @@
 ---
 
 ## Структура проекта
-
+```
 app/
 ├── main.py # Точка входа в приложение
 ├── handlers.py # Хендлеры команд и состояний бота
@@ -38,7 +38,7 @@ app/
 └── database/
 ├── models.py # ORM-модели SQLAlchemy
 └── requests.py # CRUD-запросы к базе данных
-text
+```
 
 ---
 
@@ -50,7 +50,7 @@ git clone https://github.com/<your-repo>/anon-messages-bot.git
 cd anon-messages-bot
 
 
-3. Создайте виртуальное окружение и установите зависимости:
+2. Создайте виртуальное окружение и установите зависимости:
    
 python -m venv venv
 source venv/bin/activate # Linux/macOS
@@ -58,12 +58,12 @@ venv\Scripts\activate # Windows
 pip install -r requirements.txt
 
 
-5. Установите токен бота от BotFather в переменной окружения или замените в `main.py`:
+3. Установите токен бота от BotFather в переменной окружения или замените в `main.py`:
    
 export BOT_TOKEN="ваш_токен"
 
 
-7. Запустите бота:
+4. Запустите бота:
    
 python -m app.main
 
@@ -82,10 +82,10 @@ python -m app.main
 
 - При первом запуске создаётся файл SQLite `db.sqlite3`
 - Таблицы:
-- `users` — пользователи (Telegram ID, username)
-- `messages` — сообщения (текст, id отправителя, id получателя)
+  `users` — пользователи (Telegram ID, username)
+  `messages` — сообщения (текст, id отправителя, id получателя)
 
-Сообщения удаляются после того, как получатель их прочитал.
+- Сообщения удаляются после того, как получатель их прочитал.
 
 ---
 
